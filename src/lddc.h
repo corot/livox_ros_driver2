@@ -89,6 +89,7 @@ class Lddc final {
   uint8_t GetTransferFormat(void) { return transfer_format_; }
   uint8_t IsMultiTopic(void) { return use_multi_topic_; }
   void SetRosNode(livox_ros::DriverNode *node) { cur_node_ = node; }
+  void SetMinRange(double r) { min_range2_ = r > 0.0 ? r * r : 0.0; }
 
   // void SetRosPub(ros::Publisher *pub) { global_pub_ = pub; };  // NOT USED
   void SetPublishFrq(uint32_t frq) { publish_frq_ = frq; }
@@ -139,6 +140,7 @@ class Lddc final {
   double publish_frq_;
   uint32_t publish_period_ns_;
   std::string frame_id_;
+  double min_range2_{0.0};
 
 #ifdef BUILDING_ROS1
   bool enable_lidar_bag_;
